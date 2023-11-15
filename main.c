@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-
-void shell_prompt(void);
+#include "shell.h"
 
 /**
  * main - Entry point that carries out all attached functions
@@ -27,13 +18,13 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		shell_prompt();
+		prompt();
 		
 		read_input = getline(&line_ptr, &buffer, stdin);		
 
 		if (read_input == -1)
 		{
-		/*	if (feof(stdin))
+			if (feof(stdin))
 			{
 				break;
 			}
@@ -41,12 +32,19 @@ int main(int argc, char *argv[])
 			{
 				printf("%s: No such file or directory\n", argv[0]);
 				_exit(EXIT_FAILURE);
-			}*/
-			_exit(EXIT_FAILURE);
+			}
 		}
 
 		token = strtok(line_ptr, " \t\n");
 		char *arg[] = {token, NULL};
+
+		if (token == NULL)
+	       	{
+		         continue;
+		}
+		
+		exit_shell(token);
+		env_var(token);
 
 		if (token == NULL)
 	       	{
@@ -82,22 +80,4 @@ int main(int argc, char *argv[])
 		_exit(EXIT_SUCCESS);
 
 	return (0);
-}
-
-/**
- * prompt - function that displays prompt of mini shell
- *
- * Return: Nothing
- */
-void shell_prompt(void)
-{
-	char *line_ptr = NULL;
-	size_t buffer = 0;
-	ssize_t read_input;
-
-	if (isatty(fileno(stdin)))
-	{
-		printf("#cisfun$ ");
-		fflush(stdout);
-	}
 }
