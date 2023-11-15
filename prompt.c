@@ -6,10 +6,10 @@
  * Return: exit
  */
 
-char *prompt = "Shell$ ";
-
-void shell_prompt()
+void shell_prompt(void)
 {
+	char *prompt = "cisfun$ ";
+
 	if (isatty(STDIN_FILENO))
 	{
 		if (write(STDOUT_FILENO, prompt, strlen(prompt)) == -1)

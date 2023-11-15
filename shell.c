@@ -13,21 +13,20 @@ int execute_command(const char *command)
 	pid_t child_pid;
 	int status, i;
 
-        if (strcmp(command, "exit") == 0)
-        {
-                _exit(EXIT_SUCCESS);
-        }
+	if (strcmp(command, "exit") == 0)
+	{
+		_exit(EXIT_SUCCESS);
+	}
+	else if (strcmp(command, "env") == 0)
+	{
+		extern char **environ;
 
-        else if (strcmp(command, "env") == 0)
-        {
-                extern char **environ;
-                for (i = 0; environ[i] != NULL; i++)
-	        {
+		for (i = 0; environ[i] != NULL; i++)
+		{
 			printf("%s\n", environ[i]);
 		}
 		return (0);
 	}
-
 	else
 	{
 		child_pid = fork();
@@ -46,13 +45,9 @@ int execute_command(const char *command)
 		{
 			waitpid(child_pid, &status, 0);
 			if (WIFEXITED(status))
-			{
 				return (WEXITSTATUS(status));
-			}
 			else
-			{
 				return (-1);
-			}
 		}
 	}
 }
