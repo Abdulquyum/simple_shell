@@ -10,9 +10,14 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
+void shell_prompt();
+int main(void);
+
+/*
 void env_var(char *token);
 void prompt();
 void exit_shell(char *token);
 void add_path(char **token);
+*/
 
 #endif
