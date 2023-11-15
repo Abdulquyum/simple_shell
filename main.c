@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 			else
 			{
 				printf("%s: No such file or directory\n", argv[0]);
+				free(line_ptr);
 				_exit(EXIT_FAILURE);
 			}
 		}
@@ -67,6 +68,7 @@ int main(int argc, char *argv[])
 			if (exec_ret == -1)
 			{
 				printf("%s: No such file or directory\n", argv[0]);
+				free(line_ptr);
 				_exit(EXIT_FAILURE);
 			}
 		}
@@ -76,8 +78,8 @@ int main(int argc, char *argv[])
 		}
 	}
 
-		free(line_ptr);
-		_exit(EXIT_SUCCESS);
+	free(line_ptr);
+	_exit(EXIT_SUCCESS);
 
 	return (0);
 }
