@@ -15,7 +15,7 @@ int execute_command(const char *command)
 
 	if (strcmp(command, "exit") == 0)
 	{
-		exit(EXIT_SUCCESS);
+		_exit(0);
 	}
 	else if (strcmp(command, "env") == 0)
 	{
