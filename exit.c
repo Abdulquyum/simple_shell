@@ -11,6 +11,6 @@ void exit_shell(char *token)
 {
 	if (strcmp(token, "exit") == 0)
 	{
-		exit(EXIT_SUCCESS);
+		_exit(EXIT_SUCCESS);
 	}
 }
