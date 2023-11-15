@@ -6,7 +6,7 @@
  * @argc: argument count
  * @argv: argument vector
  *
- * Return : Always 0 (Success)
+ * Return: Always 0 (Success)
  */
 int main(int argc, char *argv[])
 {
@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		prompt();
-		
-		read_input = getline(&line_ptr, &buffer, stdin);		
+
+		read_input = getline(&line_ptr, &buffer, stdin);
 
 		if (read_input == -1)
 		{
@@ -40,21 +40,21 @@ int main(int argc, char *argv[])
 		char *arg[] = {token, NULL};
 
 		if (token == NULL)
-	       	{
-		         continue;
+		{
+			continue;
 		}
-		
+
 		exit_shell(token);
 		env_var(token);
 
 		if (token == NULL)
-	       	{
-		       printf("%s: No such file or directory\n", argv[0]);
-		       continue;
+		{
+			printf("%s: No such file or directory\n", argv[0]);
+			continue;
 		}
 
 		pid_t child_pid = fork();
-		
+
 		if (child_pid == -1)
 		{
 			perror("Error");
@@ -74,12 +74,11 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-             		wait(&wstatus);
+			wait(&wstatus);
 		}
 	}
 
 	free(line_ptr);
-	_exit(EXIT_SUCCESS);
 
 	return (0);
 }
