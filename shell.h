@@ -10,8 +10,6 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-void shell_prompt();
-int env_var(const char *command);
-void exit_shell(const char *command);
+void shell_prompt(void);
 
 #endif
