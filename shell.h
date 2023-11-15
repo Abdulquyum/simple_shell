@@ -11,13 +11,7 @@
 #include <sys/stat.h>
 
 void shell_prompt();
-int main(void);
-
-/*
-void env_var(char *token);
-void prompt();
-void exit_shell(char *token);
-void add_path(char **token);
-*/
+int env_var(const char *command);
+void exit_shell(const char *command);
 
 #endif

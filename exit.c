@@ -7,7 +7,7 @@
  *
  * Return: Nothing
  */
-void exit_shell(char *token)
+void exit_shell(const char *token)
 {
 	if (strcmp(token, "exit") == 0)
 	{

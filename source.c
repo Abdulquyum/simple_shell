@@ -17,8 +17,7 @@ int main(void)
 	char *line_ptr = NULL;
 	size_t buffer = 0;
 	ssize_t read_input;
-	char *token;
-	char *args[100];
+	char *token, *args[100];
 	int arg_count;
 	pid_t wstatus, child_pid;
 
@@ -36,6 +35,7 @@ int main(void)
 			else
 			{
 				perror("Error");
+				free(line_ptr);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -67,13 +67,15 @@ int main(void)
 		{
 			execvp(args[0], args);
 			fprintf(stderr, "%s: No such file or directory\n", args[0]);
+			free(line_ptr);
 			_exit(EXIT_FAILURE);
 		}
 		else
 		{
 			wait(&wstatus);
 		}
-		free(line_ptr);
 	}
+
+	free(line_ptr);
 	_exit(EXIT_SUCCESS);
 }
