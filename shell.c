@@ -13,7 +13,10 @@ int execute_command(const char *command)
 	pid_t child_pid;
 	int status, i;
 
-	exit_shell(command);
+        if (strcmp(command, "exit") == 0)
+        {
+                _exit(EXIT_SUCCESS);
+        }
 	env_var(command);
 
 	child_pid = fork();
